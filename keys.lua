@@ -86,7 +86,7 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ settings.modkey },            "F1",     function () widgets.promptbox[mouse.screen]:run() end),
-    -- }}}
+    -- }}}r
 
     -- {{{ - POWER
     awful.key({ settings.modkey, "Mod1", "Shift" },"h", function () awful.util.spawn('sudo shutdown -h now',false) end),
