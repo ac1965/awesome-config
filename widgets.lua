@@ -345,7 +345,6 @@ for s = 1, screen.count() do
         -- {{{ always have a taglist, promptbox and layoutbox
         { 
             layout = awful.widget.layout.horizontal.leftright,
-            mylauncher,
             widgets.lspace      , widgets.layoutbox[s], 
             widgets.lspace      , widgets.taglist[s]  , 
             widgets.promptbox[s], widgets.lspace      , 
@@ -365,6 +364,7 @@ for s = 1, screen.count() do
 
     widgets.wibox2[s].widgets = { 
        s == 1 or nil,
+        mylauncher,
         widgets.tasklist[s],
         layout =  awful.widget.layout.horizontal.rightleft
      }
