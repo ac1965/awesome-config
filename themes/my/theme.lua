@@ -95,5 +95,11 @@ theme.titlebar_maximized_button_normal_inactive = themedir .. "/icons/titlebar/m
 -- }}}
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
+-- calendar settings
+theme.calendar_w         = 160
+theme.calendar_fg        = theme.fg_normal
+theme.calendar_bg        = theme.bg_normal
+
+
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
