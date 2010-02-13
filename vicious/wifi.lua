@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Licensed under the GNU General Public License v2
---  * (c) 2009, Adrian C. <anrxc@sysphere.org>
+--  * (c) 2010, Adrian C. <anrxc@sysphere.org>
 ---------------------------------------------------
 
 -- {{{ Grab environment
@@ -30,9 +30,9 @@ local function worker(format, iface)
         ["{ssid}"] = "N/A",
         ["{mode}"] = "N/A",
         ["{chan}"] = "N/A",
-        ["{rate}"] = "N/A",
+        ["{rate}"] = 0,
         ["{link}"] = 0,
-        ["{sign}"] = "N/A"
+        ["{sign}"] = 0
     }
 
     -- Check if iwconfig wasn't found, can't be executed or the
@@ -41,22 +41,20 @@ local function worker(format, iface)
         return winfo
     end
 
-    -- The output differs from system to system, some stats can
-    -- be separated by =, and not all drivers report all stats
+    -- Output differs from system to system, some stats can be
+    -- separated by =, and not all drivers report all stats
     winfo["{ssid}"] =  -- SSID can have almost anything in it
       string.match(iw, 'ESSID[=:]"([%w%p]+[%s]*[%w%p]*]*)"') or winfo["{ssid}"]
     winfo["{mode}"] =  -- Modes are simple, but also match the "-" in Ad-Hoc
       string.match(iw, "Mode[=:]([%w%-]*)") or winfo["{mode}"]
     winfo["{chan}"] =  -- Channels are plain digits
       tonumber(string.match(iw, "Channel[=:]([%d]+)") or winfo["{chan}"])
-    winfo["{rate}"] =  -- Bitrate can start with a space and we want to display Mb/s
-      string.match(iw, "Bit Rate[=:]([%s]?[%d%.]*[%s][%/%a]+)") or winfo["{rate}"]
---  winfo["{link}"] =  -- Link quality can contain a slash: 32/100
---    string.match(iw, "Link Quality[=:]([%d]+[%/%d]*)") or winfo["{link}"]
-    winfo["{link}"] =  --  * match only the first number, also suitable for a progressbar
+    winfo["{rate}"] =  -- Bitrate can start with a space, we don't want to display Mb/s
+      tonumber(string.match(iw, "Bit Rate[=:]([%s]?[%d%.]*)") or winfo["{rate}"])
+    winfo["{link}"] =  -- Link quality can contain a slash (32/70), match only the first number
       tonumber(string.match(iw, "Link Quality[=:]([%d]+)") or winfo["{link}"])
-    winfo["{sign}"] =  -- Signal level can be a negative value, also display decibel notation
-      string.match(iw, "Signal level[=:]([%-%d]+[%s][%a]*)") or winfo["{sign}"]
+    winfo["{sign}"] =  -- Signal level can be a negative value, don't display decibel notation
+      tonumber(string.match(iw, "Signal level[=:]([%-]?[%d]+)") or winfo["{sign}"])
 
     return winfo
 end

@@ -2,8 +2,8 @@
 -- Vicious widgets for the awesome window manager
 ---------------------------------------------------
 -- Licensed under the GNU General Public License v2
---  * (c) 2009, Adrian C. <anrxc@sysphere.org>
---  * (c) 2008, Lucas de Vries <lucas@glacicle.com>
+--  * (c) 2010, Adrian C. <anrxc@sysphere.org>
+--  * (c) 2009, Lucas de Vries <lucas@glacicle.com>
 ---------------------------------------------------
 
 -- {{{ Grab environment
@@ -21,33 +21,29 @@ local table = {
 
 
 -- {{{ Configure widgets
---require("vicious.cpu")
---require("vicious.cpuinf")
---require("vicious.cpufreq")
---require("vicious.thermal")
---require("vicious.uptime")
---require("vicious.bat")
+require("vicious.cpu")
+require("vicious.cpuinf")
+require("vicious.cpufreq")
+require("vicious.thermal")
+require("vicious.uptime")
+require("vicious.bat")
 require("vicious.mem")
---require("vicious.fs")
---require("vicious.dio")
---require("vicious.hddtemp")
---require("vicious.net")
+require("vicious.fs")
+require("vicious.dio")
+require("vicious.hddtemp")
+require("vicious.net")
 require("vicious.wifi")
---require("vicious.mbox")
---require("vicious.mboxc")
---require("vicious.mdir")
---require("vicious.gmail")
---require("vicious.entropy")
---require("vicious.org")
---require("vicious.pacman")
---require("vicious.mpd")
---require("vicious.volume")
---require("vicious.weather")
---require("vicious.date")
-require("vicious.battery")
-require("vicious.volumecontrol")
-require("vicious.touch")
-require("vicious.bluetooth")
+require("vicious.mbox")
+require("vicious.mboxc")
+require("vicious.mdir")
+require("vicious.gmail")
+require("vicious.entropy")
+require("vicious.org")
+require("vicious.pkg")
+require("vicious.mpd")
+require("vicious.volume")
+require("vicious.weather")
+require("vicious.date")
 -- }}}
 
 -- Vicious: widgets for the awesome window manager

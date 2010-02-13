@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Licensed under the GNU General Public License v2
---  * (c) 2009, Adrian C. <anrxc@sysphere.org>
---  * (c) 2008, Lucas de Vries <lucas@glacicle.com>
+--  * (c) 2010, Adrian C. <anrxc@sysphere.org>
+--  * (c) 2009, Lucas de Vries <lucas@glacicle.com>
 ---------------------------------------------------
 
 -- {{{ Grab environment
@@ -20,7 +20,7 @@ module("vicious.mem")
 local function worker(format)
     -- Get meminfo
     local f = io.open("/proc/meminfo")
-    local mem  = { buf = {}, swp = {}, }
+    local mem = { buf = {}, swp = {} }
 
     for line in f:lines() do
         if string.match(line, "^MemTotal.*") then
