@@ -4,8 +4,7 @@
 
 theme = {}
 confdir = awful.util.getdir("config")
---theme.wallpaper_cmd = { "awsetbg " .. confdir .. "/wallpapers/3048555720_dc0c268ce1.jpg" }
-theme.wallpaper_cmd = { "awsetbg " .. confdir .. "/wallpapers/rabby.jpg" }
+theme.wallpaper_cmd = { "awsetbg " .. confdir .. "/themes/wallpapers/rabby.jpg" }
 
 --theme.font          = "fixed 9"
 
