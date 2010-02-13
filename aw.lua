@@ -8,12 +8,12 @@ require("beautiful")
 require("naughty")
 -- Widget library
 require("myrc.mainmenu")
-require("vicious")
+require("markup")
 require("shifty")
 require("calendar")
-require("markup")
 require("battery")
 require("volume")
+require("vicious")
 require("revelation")
 
 -- {{{  default value
