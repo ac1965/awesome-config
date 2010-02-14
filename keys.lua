@@ -85,7 +85,7 @@ globalkeys = awful.util.table.join(
     awful.key({ settings.modkey, "Mod1", "Shift"   }, "l", function () awful.layout.inc(settings.layouts, -1) end),
 
     -- Prompt
-    awful.key({ settings.modkey },            "F1",     function () widgets.promptbox[mouse.screen]:run() end),
+    awful.key({ settings.modkey },            "r",     function () widgets.promptbox[mouse.screen]:run() end),
     -- }}}r
 
     -- {{{ - POWER

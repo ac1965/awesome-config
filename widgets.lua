@@ -129,21 +129,10 @@ widgets.taglist.buttons = awful.util.table.join(
     )
 -- }}}
 
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", settings.apps.terminal .. " -e man awesome" },
-   { "edit config", settings.apps.editor .. " " .. confdir .. "/rc.lua" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
-
 -- {{{ XDG Menu
 mymainmenu = myrc.mainmenu.build()
 mylauncher = awful.widget.launcher({ 
                                       image = beautiful.awesome_icon, menu = mymainmenu })
--- }}}
-
 -- }}}
 
 -- {{{1 some helper functions
@@ -342,12 +331,11 @@ for s = 1, screen.count() do
     widgets.wibox2[s] = awful.wibox({ position = "bottom", screen = s })
     widgets.wibox[s].widgets = { 
 
-        -- {{{ always have a taglist, promptbox and layoutbox
+        -- {{{ always have a taglist and layoutbox
         { 
             layout = awful.widget.layout.horizontal.leftright,
             widgets.lspace      , widgets.layoutbox[s], 
             widgets.lspace      , widgets.taglist[s]  , 
-            widgets.promptbox[s], widgets.lspace      , 
         },
         -- }}}
         
@@ -364,7 +352,8 @@ for s = 1, screen.count() do
 
     widgets.wibox2[s].widgets = { 
        s == 1 or nil,
-        mylauncher,
+        mylauncher, widgets.lspace      , 
+        widgets.promptbox[s], widgets.lspace      , 
         widgets.tasklist[s],
         layout =  awful.widget.layout.horizontal.rightleft
      }
