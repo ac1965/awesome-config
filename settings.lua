@@ -12,7 +12,8 @@ settings = {
     terminal  = "urxvtc",
     -- browser   = os.getenv("BROWSER"),
     browser   = "uzbl-browser",
-    editor = os.getenv("EDITOR") or "nano"
+    editor = os.getenv("EDITOR") or "nano",
+    music = "mocp --server",
   },
   --}}}
 
