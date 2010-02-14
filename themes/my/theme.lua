@@ -3,7 +3,7 @@
 ---------------------------
 
 theme = {}
-themedir = awful.util.getdir("config") .. "/themes"
+themedir = awful.util.getdir("config") .. "/themes/my"
 --theme.wallpaper_cmd = { "awsetbg " .. themedir .. "/wallpapers/3048555720_dc0c268ce1.jpg" }
 theme.wallpaper_cmd = { "awsetbg " .. themedir .. "/wallpapers/rabby.jpg" }
 
