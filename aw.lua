@@ -32,6 +32,109 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+function tag_move(t, scr)
+    -- {{{
+    local ts = t or awful.tag.selected()
+    local screen_target = scr or awful.util.cycle(screen.count(), ts.screen + 1)
+
+    shifty.set(ts, { screen = screen_target })
+end
+-- }}}
+
+function tag_to_screen(t, scr)
+    -- {{{
+    local ts = t or awful.tag.selected()
+    local screen_origin = ts.screen
+    local screen_target = scr or awful.util.cycle(screen.count(), ts.screen + 1)
+
+    awful.tag.history.restore(ts.screen,1)
+    tag_move(ts, screen_target)
+
+    -- never waste a screen
+    if #(screen[screen_origin]:tags()) == 0 then
+        for _, tag in pairs(screen[screen_target]:tags()) do
+            if not tag.selected then
+                tag_move(tag, screen_origin) 
+                tag.selected = true
+                break
+            end
+        end
+    end
+
+    awful.tag.viewonly(ts)
+    mouse.screen = ts.screen
+    if #ts:clients() > 0 then
+        local c = ts:clients()[1]
+        client.focus = c
+    end
+
+end
+-- }}}
+
+function workspace_next()
+    for s=1,screen.count() do
+        awful.tag.viewnext(screen[s])
+    end
+end
+
+function workspace_prev()
+    for s=1,screen.count() do
+        awful.tag.viewprev(screen[s])
+    end
+end
+
+function tagSearch(name)
+    -- {{{
+  for s = 1, screen.count() do
+    t = shifty.name2tag(name,s)
+    if t ~= nil then
+        if t.screen ~= mouse.screen then
+            awful.screen.focus(t.screen)
+        end
+      awful.tag.viewonly(t)
+      return true
+    end
+  end
+  return false
+end
+-- }}}
+
+-- {{{ wip
+function tagScreenless()
+    local allTags = {}
+    local curTag = awful.tag.selected()
+    for s = 1, screen.count() do
+        t = shifty.name2tag(name,s)
+        if t ~= nil then
+            awful.tag.viewonly(t)
+            awful.screen.focus(awful.util.cycle(screen.count(),s+mouse.screen))
+            return true
+        end
+    end
+    return false
+end
+-- }}}
+
+-- Called externally and just pops to or merges with my active vim server when 
+-- new files are dumped to it. (vim-start.sh) 
+-- though it could easily be used with any tag by passing a different 'name'
+-- parameter
+function tagPop(name)
+    -- {{{ tagPop() 
+    for s = 1, screen.count() do
+        t = shifty.name2tag(name,s)
+        if t ~= nil then
+            if t.screen == awful.tag.selected().screen then
+                t.selected = true
+            else
+                awful.tag.viewonly(t)
+                awful.screen.focus(t.screen)
+            end
+        end
+    end
+end
+-- }}}
+
 --{{{ clientkeys
 clientkeys = awful.util.table.join(
     awful.key({ settings.modkey,           }, "f", function (c) c.fullscreen = not c.fullscreen  end),
@@ -92,4 +195,4 @@ client.add_signal("unfocus", function (c)
 end)
 -- }}}
 
--- vim:set ft=lua tw=80 fdm=marker ts=4 sw=4 et sta ai sti: --
+-- vim:set filetype=lua textwidth=120 fdm=marker tabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent: --
