@@ -36,7 +36,7 @@ globalkeys = awful.util.table.join(
 
     -- run or raise type behavior but with benefits of shifty
     awful.key({ settings.modkey},"w", function () if not tagSearch("web") then awful.util.spawn(settings.apps.browser) end end),
-    awful.key({ settings.modkey},"z", function () if not tagSearch("vim") then awful.util.spawn(settings.apps.editor) end end),
+    awful.key({ settings.modkey},"z", function () if not tagSearch("editor") then awful.util.spawn(settings.apps.editor) end end),
     awful.key({ settings.modkey},"d", function () if not tagSearch("mred") then awful.util.spawn("drscheme") end end),
     awful.key({ settings.modkey},"c", function () if not tagSearch("dev") then awful.util.spawn(settings.apps.php_editor) end end),
     awful.key({ settings.modkey },"m", function () if not tagSearch("mail") then awful.util.spawn(settings.apps.mail) end end),

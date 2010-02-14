@@ -12,8 +12,9 @@ settings = {
     terminal  = "urxvtc",
     -- browser   = os.getenv("BROWSER"),
     browser   = "uzbl-browser",
-    editor = os.getenv("EDITOR") or "nano",
     music = "mocp --server",
+    -- editor = os.getenv("EDITOR") or "nano",
+     editor    = os.getenv("HOME") .. "/.bin/vim-start.sh"
   },
   --}}}
 
@@ -37,25 +38,39 @@ settings = {
     Ipython = { focus = 1.0, unfocus = 1.0 },
   },
   -- }}}
+
+  -- {{{ systray
+  systray = {
+--     dataformat = '%Y-%m-%d %k:%M (%a)'
+     dateformat = "%k:%M",
+  },
+  -- }}}
 }
 
 --{{{ shifty configured tags
 shifty.config.tags = {
 
   term   =  { layout = awful.layout.suit.max, mwfact = 0.62,
-                exclusive = true, solitary = true, position = 1, init = false,
+                exclusive = true, solitary = true, position = 1, init = true,
                 screen = 1, slave = false, spawn = settings.apps.terminal },
 
   w2     =  { layout = awful.layout.suit.tile.bottom, mwfact = 0.62,
 		exclusive = false, solitary = false, position = 1, init = true,
 		screen = 2 },
 
+  editor     =  { layout = awful.layout.suit.tile, mwfact = 0.52,
+                exclusive = false, solitary = false, position = 3,
+                  init = false, screen = 1, slave = true,
+                  spawn = settings.apps.editor  }, 
+
+
   web    =  { layout = awful.layout.suit.max, mwfact = 0.62,
                 exclusive = true, solitary = true, position = 4,  init = false,
                 spawn   = settings.apps.browser }, 
 
   ds     =  { layout = awful.layout.suit.max        , mwfact = 0.70,
-                exclusive = false, solitary = false, position = 7, init = false,
+                exclusive = false, solitary = false, position = 7,
+              init = false,
                 persist = false, nopopup = false , slave = false }, 
 
   media  =  { layout = awful.layout.suit.floating, exclusive = false, 
@@ -77,7 +92,7 @@ shifty.config.tags = {
 --{{{ shifty application matching rules
 shifty.config.apps = {
   { match   = { "vim","gvim" },
-    tag     = "vim"                                         },
+    tag     = "editor"                                         },
 
   { match   = { "urxvt", "urxvtc" },
     tag     = "term"                                         },

@@ -26,7 +26,7 @@ widgets.date:buttons(awful.util.table.join(
 vicious.register(
     widgets.date,
     vicious.widgets.date,
-   markup.fg(beautiful.fg_sb_hi, '%Y-%m-%d %k:%M (%a)'),
+   markup.fg(beautiful.fg_sb_hi, settings.systray.dateformat),
     59)
 -- }}}
 
