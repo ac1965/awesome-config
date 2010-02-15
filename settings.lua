@@ -13,8 +13,8 @@ settings = {
     -- browser   = os.getenv("BROWSER"),
     browser   = "uzbl-browser",
     music = "mocp --server",
-    -- editor = os.getenv("EDITOR") or "nano",
-     editor    = os.getenv("HOME") .. "/.bin/vim-start.sh"
+    editor = "emacs",
+    --editor    = os.getenv("HOME") .. "/.bin/vim-start.sh"
   },
   --}}}
 

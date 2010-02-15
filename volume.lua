@@ -67,8 +67,7 @@ function init(args) --- cardid, channel, colors, layout)
 
     config.widget:set_background_color( args.background_color or beautiful.vol_bg or "#000000" )
 
---    config.widget:set_color( args.foreground_color or beautiful.fg_focus or "#ffffff" )
-    config.widget:set_color( args.foreground_color or beautiful.fg_focus or "#ff0000" )
+    config.widget:set_color( args.foreground_color or beautiful.fg_focus or "#ffffff" )
 
     config.widget:set_gradient_colors( {
         args.gradient_start or beautiful.fg_focus,

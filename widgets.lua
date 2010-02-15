@@ -32,30 +32,30 @@ vicious.register(
 
 
 -- {{{ -- CPU
-widgets.cpu = widget({type = "textbox", align = 'right' })
-widgets.cpu.width = 43
-vicious.register(
-    widgets.cpu,
-    vicious.widgets.cpu,
-    'cpu:' .. markup.fg(beautiful.fg_sb_hi, '$2')
-    )
+-- widgets.cpu = widget({type = "textbox", align = 'right' })
+-- widgets.cpu.width = 43
+-- vicious.register(
+--     widgets.cpu,
+--     vicious.widgets.cpu,
+--     'cpu:' .. markup.fg(beautiful.fg_sb_hi, '$2')
+--     )
 -- }}}
 
 
 -- {{{ MEMORY
-widgets.memory = widget({type = "textbox", align = 'right' })
-widgets.memory.width = 45
-vicious.register(
-    widgets.memory,
-    vicious.widgets.mem,
-    'mem:' ..  markup.fg(beautiful.fg_sb_hi,'$1')
-    )
+-- widgets.memory = widget({type = "textbox", align = 'right' })
+-- widgets.memory.width = 45
+-- vicious.register(
+--     widgets.memory,
+--     vicious.widgets.mem,
+--     'mem:' ..  markup.fg(beautiful.fg_sb_hi,'$1')
+--     )
 -- }}}
 
 
 --{{{ MOCP, FS and BATTERY
-widgets.mocp = mocp.init(settings.theme_path.."/music/sonata.png")
-widgets.mocp.width = 100
+--widgets.mocp = mocp.init(settings.theme_path.."/music/sonata.png")
+--widgets.mocp.width = 100
 
 --widgets.diskspace = fs.init({interval = 59,
 --                                parts = { ['sPhoenix-Home'] = {label = "Home"},
@@ -63,6 +63,8 @@ widgets.mocp.width = 100
 widgets.battery = battery.init()
 
 -- VOLUME :: FIXME :: my buttons are broke
+--widgets.volume:add_signal("mouse::enter",function() volume.add() end)
+--widgets.volume:add_signal("mouse::leave",volume.remove) 
 widgets.volume = volume.init()
 --}}}
 
@@ -292,11 +294,11 @@ widgets.wibox2 = {}
 -- {{{ -- STATUSBAR 
 widget_table1 = {
     widgets.rspace   , 
-    widgets.cpu      , widgets.rspace, 
-    widgets.memory   , widgets.rspace, 
+    --widgets.cpu      , widgets.rspace, 
+    --widgets.memory   , widgets.rspace, 
     widgets.battery  , widgets.rspace, 
-    -- widgets.diskspace, widgets.rspace, 
-    widgets.mocp     , widgets.rspace, 
+    --widgets.diskspace, widgets.rspace, 
+    --widgets.mocp     , widgets.rspace, 
     widgets.volume   , widgets.rspace, 
     widgets.systray  , widgets.rspace, 
     widgets.date     , widgets.rspace, 
