@@ -10,11 +10,9 @@ settings = {
   --{{{ apps
   apps = {
     terminal  = "urxvtc",
-    -- browser   = os.getenv("BROWSER"),
     browser   = "uzbl-browser",
     music = "mocp --server",
     editor = "emacs",
-    --editor    = os.getenv("HOME") .. "/.bin/vim-start.sh"
   },
   --}}}
 
@@ -50,67 +48,54 @@ settings = {
 --{{{ shifty configured tags
 shifty.config.tags = {
 
-  term   =  { layout = awful.layout.suit.max, mwfact = 0.62,
-                exclusive = true, solitary = true, position = 1, init = true,
-                screen = 1, slave = false, spawn = settings.apps.terminal },
+  term     =  { layout = awful.layout.suit.tile, mwfact = 0.52,
+                exclusive = false, position = 1, init = true,
+                screen = 1, slave = true, spawn = settings.apps.terminal  }, 
 
   w2     =  { layout = awful.layout.suit.tile.bottom, mwfact = 0.62,
 		exclusive = false, solitary = false, position = 1, init = true,
 		screen = 2 },
 
   editor     =  { layout = awful.layout.suit.tile, mwfact = 0.52,
-                exclusive = false, solitary = false, position = 3,
+                  exclusive = false, solitary = false, position = 2,
                   init = false, screen = 1, slave = true,
                   spawn = settings.apps.editor  }, 
 
 
   web    =  { layout = awful.layout.suit.max, mwfact = 0.62,
-                exclusive = true, solitary = true, position = 4,  init = false,
-                spawn   = settings.apps.browser }, 
+              exclusive = true, solitary = true, position = 3,  init = false,
+              spawn   = settings.apps.browser }, 
 
   ds     =  { layout = awful.layout.suit.max        , mwfact = 0.70,
-                exclusive = false, solitary = false, position = 7,
+              exclusive = false, solitary = false, position = 4,
               init = false,
-                persist = false, nopopup = false , slave = false }, 
+              persist = false, nopopup = false , slave = false }, 
 
   media  =  { layout = awful.layout.suit.floating, exclusive = false, 
-                solitary  = false, position = 8     }, 
+              solitary  = false, position = 5     }, 
 
-  gimp  =  { layout = awful.layout.suit.tile, exclusive = false, 
-                solitary  = false, position = 8, ncol = 3, mwfact = 0.75,
-                nmaster=1,
-		spawn = 'gimp-2.6', slave = true                                    },
+  office =  { layout = awful.layout.suit.tile, position  = 6 }
 
-  mred  =  { layout = awful.layout.suit.tile        , mwfact = 0.55,
-		exclusive = false, solitary = false, position = 9, init = false,
-		slave = true },
-
-  office =  { layout = awful.layout.suit.tile, position  = 9 }
 }
 --}}}
 
 --{{{ shifty application matching rules
 shifty.config.apps = {
-  { match   = { "vim","gvim" },
+  { match   = { "vim","gvim","emacs" },
     tag     = "editor"                                         },
 
   { match   = { "urxvt", "urxvtc" },
     tag     = "term"                                         },
 
-  { match   = { "Navigator","Vimperator","Gran Paradiso", "Chrome", "Chromium", "exe" },
+  { match   = { "Navigator","Vimperator","Gran Paradiso", "Chrome", "Chromium", "exe",
+             "Firefox", "uzbl"},
     tag     = "web"                                         },
-
-  { match   = { "mutt" }, 
-    tag     = "mail"                                        },
 
   { match   = { "gnumeric", "abiword" },
     tag     = "office"                                      },
 
   { match   = { "acroread","Apvlv","Evince" },
     tag     = "ds"                                          },
-
-  { match   = { "VBox.*","VirtualBox.*" },
-    tag     = "vbx"                                         },
 
   { match   = { "Mirage","gtkpod","Ufraw","easytag"},
     tag     = "media",
